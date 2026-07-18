@@ -96,6 +96,30 @@ body {
     0 0 18px rgba(74, 255, 145, 0.15);
 
   transition: 0.3s ease;
+  position: relative;
+}
+
+#letterBtn::before {
+  content: "⬇";
+  position: absolute;
+  left: 50%;
+  top: -35px;
+  transform: translateX(-50%);
+  color: #92f5a8;
+  font-size: 32px;
+  animation: bounceArrow 1.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes bounceArrow {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
 }
 
 .stage-btn:not(.locked):hover {
