@@ -45,7 +45,7 @@ const transitionText =
 // PASSWORD
 // =================================
 
-const correctPassword = "My Beloved";
+const correctPassword = "1234";
 
 let isUnlocking = false;
 
