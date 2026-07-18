@@ -1,0 +1,497 @@
+/* =================================
+   RESET
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =================================
+   BODY
+================================= */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+
+    font-family: "Segoe UI", sans-serif;
+
+    cursor: none !important;
+}
+
+button,
+a {
+    cursor: none !important;
+}
+
+
+/* =================================
+   HEART CURSOR
+================================= */
+
+#heartCursor {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    z-index: 99999;
+
+    font-size: 24px;
+
+    pointer-events: none;
+
+    transform: translate(-50%, -50%);
+
+    filter: drop-shadow(0 0 8px #66bb6a);
+
+    transition:
+        transform 0.08s linear,
+        opacity 0.2s ease;
+}
+
+#heartCursor.hovering {
+    transform: translate(-50%, -50%) scale(1.35);
+}
+
+
+/* =================================
+   STAGE 1
+================================= */
+
+#stage1 {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    background-image: url("images/4kgarden.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =================================
+   DARK OVERLAY
+================================= */
+
+.overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.85);
+
+    animation: lightUp 3s forwards;
+}
+
+
+/* =================================
+   MAIN CONTENT
+================================= */
+
+.content {
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    color: white;
+
+    opacity: 0;
+
+    animation: showContent 1.5s ease forwards;
+    animation-delay: 2.6s;
+}
+
+.content h1 {
+    font-size: 70px;
+
+    margin-bottom: 15px;
+
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.content h2 {
+    font-size: 42px;
+
+    margin-bottom: 20px;
+
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.content p {
+    font-size: 24px;
+
+    margin-bottom: 40px;
+
+    letter-spacing: 2px;
+
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+
+/* =================================
+   BUTTON
+================================= */
+
+button {
+    padding: 18px 45px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: #2e7d32;
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: none !important;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+    animation: pulse 2.5s infinite;
+}
+
+button:hover {
+    transform: translateY(-4px) scale(1.08);
+
+    box-shadow:
+        0 0 15px #66bb6a,
+        0 0 35px #66bb6a;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+
+/* =================================
+   OPENING DARK SCREEN
+================================= */
+
+@keyframes lightUp {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+
+/* =================================
+   CONTENT ANIMATION
+================================= */
+
+@keyframes showContent {
+    from {
+        opacity: 0;
+
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* =================================
+   BUTTON PULSE
+================================= */
+
+@keyframes pulse {
+    0% {
+        box-shadow:
+            0 0 10px rgba(76, 175, 80, 0.5);
+
+        transform: scale(1);
+    }
+
+    50% {
+        box-shadow:
+            0 0 30px rgba(76, 175, 80, 1);
+
+        transform: scale(1.05);
+    }
+
+    100% {
+        box-shadow:
+            0 0 10px rgba(76, 175, 80, 0.5);
+
+        transform: scale(1);
+    }
+}
+
+
+/* =================================
+   CURSOR SPARKLES
+================================= */
+
+.sparkle {
+    position: fixed;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    pointer-events: none;
+
+    z-index: 9998;
+
+    animation: spark 0.8s linear forwards;
+}
+
+@keyframes spark {
+    to {
+        opacity: 0;
+
+        transform:
+            translateY(-20px)
+            scale(0);
+    }
+}
+
+
+/* =================================
+   FALLING PETALS
+================================= */
+
+.petal {
+    position: fixed;
+
+    top: -50px;
+
+    z-index: 5;
+
+    color: pink;
+
+    font-size: 25px;
+
+    pointer-events: none;
+
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform:
+            translateY(110vh)
+            rotate(360deg);
+    }
+}
+
+
+/* =================================
+   HIDDEN CLASS
+================================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =================================
+   FLOWER INTRO
+================================= */
+
+#flowerIntro {
+    position: fixed;
+    inset: 0;
+
+    z-index: 10000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background: black;
+
+    animation: fadeIntro 1s ease forwards;
+    animation-delay: 4.5s;
+}
+
+#centerFlower {
+    font-size: 25px;
+
+    filter: drop-shadow(0 0 20px pink);
+
+    animation: flowerGrow 4s ease forwards;
+}
+
+.introPetal {
+    position: fixed;
+
+    z-index: 10001;
+
+    color: pink;
+
+    font-size: 25px;
+
+    pointer-events: none;
+
+    animation: rushToCenter 1.5s ease-in forwards;
+}
+
+@keyframes flowerGrow {
+    from {
+        transform:
+            scale(0.3)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            scale(5)
+            rotate(360deg);
+    }
+}
+
+@keyframes rushToCenter {
+    to {
+        left: 50vw;
+        top: 50vh;
+
+        opacity: 0;
+
+        transform:
+            scale(0.2)
+            rotate(720deg);
+    }
+}
+
+@keyframes fadeIntro {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+
+/* =================================
+   STAGE 1 TO STAGE 2 TRANSITION
+================================= */
+
+#pageTransition {
+    position: fixed;
+    inset: 0;
+
+    z-index: 20000;
+
+    background: black;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+#pageTransition.active {
+    visibility: visible;
+
+    pointer-events: all;
+
+    animation: blinkToBlack 1.7s ease forwards;
+}
+
+@keyframes blinkToBlack {
+    0% {
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 0.9;
+    }
+
+    24% {
+        opacity: 0.15;
+    }
+
+    38% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.25;
+    }
+
+    64% {
+        opacity: 1;
+    }
+
+    76% {
+        opacity: 0.45;
+    }
+
+    88% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+body.transitioning button {
+    pointer-events: none;
+}
+
+body.transitioning #heartCursor {
+    opacity: 0;
+}
+
+
+/* =================================
+   MOBILE RESPONSIVE
+================================= */
+
+@media (max-width: 700px) {
+    .content {
+        padding: 20px;
+    }
+
+    .content h1 {
+        font-size: 48px;
+    }
+
+    .content h2 {
+        font-size: 30px;
+    }
+
+    .content p {
+        font-size: 18px;
+    }
+
+    button {
+        padding: 15px 35px;
+
+        font-size: 17px;
+    }
+}

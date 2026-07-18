@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Secret Login ❤️</title>
+
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <!-- Unlock transition to Stage 3 -->
+<div id="unlockTransition">
+    <div class="unlock-animation">
+        <div id="transitionLock">🔒</div>
+
+        <h2 id="transitionText">
+            Unlocking the next stage...
+        </h2>
+
+        <div class="loading-line">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+</div>
+
+    <div id="entranceTransition"></div>
+
+    <div id="heartCursor">💚</div>
+
+    <div id="flower-container"></div>
+
+    <main id="stage2">
+
+        <h1 class="code-title">What is the code?</h1>
+
+        <div class="login-card" id="loginCard">
+
+            <h2>🔐 Secret Access</h2>
+
+            <p class="login-description">
+                Enter the code to continue the journey 💚
+            </p>
+
+            <div class="password-box">
+
+                <input
+                    type="password"
+                    id="passwordInput"
+                    placeholder="Please enter the secret code..."
+                    autocomplete="off"
+                >
+
+                <button id="eyeBtn" type="button">👁</button>
+
+            </div>
+
+            <p id="loginMessage"></p>
+
+            <button id="unlockBtn" type="button">
+                Unlock ❤️
+            </button>
+
+            <button id="hintBtn" type="button">?</button>
+
+            <div id="hintBox" class="hidden">
+                💡 Hint: The code is something special I call you.
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="login.js"></script>
+
+</body>
+
+</html>
