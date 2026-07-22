@@ -99,6 +99,25 @@ body {
   position: relative;
 }
 
+/* Soft, tactile feedback shared by every interactive control. */
+button,
+.mail {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:not(:disabled):active,
+.mail:active,
+button.is-clicked,
+.mail.is-clicked {
+  animation: buttonPress 0.34s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+button:focus-visible,
+.mail:focus-visible {
+  outline: 3px solid rgba(146, 245, 168, 0.9);
+  outline-offset: 4px;
+}
+
 #letterBtn::before {
   content: "⬇";
   position: absolute;
@@ -274,6 +293,16 @@ body {
 
 .popup-area.show {
   display: flex;
+}
+
+.popup-area.closing .blur-bg {
+  animation: backdropOut 0.38s ease forwards;
+}
+
+.popup-area.closing .paper,
+.popup-area.closing .mail-box {
+  pointer-events: none;
+  animation: popOut 0.38s cubic-bezier(0.4, 0, 1, 1) forwards;
 }
 
 .blur-bg {
@@ -837,5 +866,29 @@ body.shake {
 
   #heartCursor {
     display: none;
+  }
+}
+
+@keyframes popOut {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to { opacity: 0; transform: scale(0.86) translateY(18px); }
+}
+
+@keyframes backdropOut {
+  to { opacity: 0; backdrop-filter: blur(0); }
+}
+
+@keyframes buttonPress {
+  0% { transform: scale(1); }
+  45% { transform: scale(0.91); }
+  75% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button, .mail, .paper, .mail-box, .blur-bg {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

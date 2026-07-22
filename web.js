@@ -51,6 +51,21 @@ const heartCursor =
 const blackFade =
   document.getElementById("blackFade");
 
+let popupClosing = false;
+
+// Works for static controls and buttons created inside each popup.
+document.addEventListener("click", (event) => {
+  const control = event.target.closest("button, .mail");
+  if (!control || control.disabled || control.classList.contains("locked")) return;
+
+  control.classList.remove("is-clicked");
+  void control.offsetWidth;
+  control.classList.add("is-clicked");
+  control.addEventListener("animationend", () => {
+    control.classList.remove("is-clicked");
+  }, { once: true });
+});
+
 
 // Hide real Continue button first
 
@@ -161,6 +176,7 @@ function openMail() {
     return;
   }
 
+  popupArea.classList.remove("closing");
   popupArea.classList.add("show");
 
   mailBox.style.display = "block";
@@ -226,6 +242,7 @@ function openLetter() {
 
 function openWish() {
 
+  popupArea.classList.remove("closing");
   popupArea.classList.add("show");
 
   mailBox.style.display = "none";
@@ -264,6 +281,7 @@ function openWish() {
 
 function openQuestions() {
 
+  popupArea.classList.remove("closing");
   popupArea.classList.add("show");
 
   mailBox.style.display = "none";
@@ -361,6 +379,7 @@ function openQuestions() {
 
 function openLastQuestion() {
 
+  popupArea.classList.remove("closing");
   popupArea.classList.add("show");
 
   mailBox.style.display = "none";
@@ -514,10 +533,15 @@ function finishLastQuestion() {
 // =================================
 
 function closePopup() {
+  if (popupClosing) return;
+  popupClosing = true;
+  popupArea.classList.add("closing");
 
-  paperBox.classList.remove("show");
-
-  popupArea.classList.remove("show");
+  setTimeout(() => {
+    paperBox.classList.remove("show");
+    popupArea.classList.remove("show", "closing");
+    popupClosing = false;
+  }, 380);
 
 }
 

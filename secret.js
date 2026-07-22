@@ -626,8 +626,27 @@ function unlockLastButton() {
 // =================================
 
 function closeModal() {
-  modal.classList.remove("show");
+  if (modal.classList.contains("closing")) return;
+
+  modal.classList.add("closing");
+
+  setTimeout(() => {
+    modal.classList.remove("show", "closing");
+  }, 380);
 }
+
+// Give static and modal-created buttons consistent click feedback.
+document.addEventListener("click", (event) => {
+  const button = event.target.closest("button");
+  if (!button || button.disabled || button.classList.contains("locked")) return;
+
+  button.classList.remove("is-clicked");
+  void button.offsetWidth;
+  button.classList.add("is-clicked");
+  button.addEventListener("animationend", () => {
+    button.classList.remove("is-clicked");
+  }, { once: true });
+});
 
 
 // =================================
