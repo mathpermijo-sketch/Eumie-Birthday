@@ -272,6 +272,92 @@ button:focus-visible,
   font-weight: 800;
 }
 
+/* =================================
+   NEWS-STYLE BOTTOM REMINDER
+================================= */
+
+.unlock-ticker {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 8;
+  height: 48px;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background: rgba(2, 8, 6, 0.96);
+  border-top: 2px solid #35ff9b;
+  box-shadow: 0 -5px 22px rgba(0, 0, 0, 0.55);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.unlock-ticker.finished {
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+.ticker-label {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  padding: 0 20px;
+  background: #16a34a;
+  color: white;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  box-shadow: 7px 0 15px rgba(0, 0, 0, 0.35);
+}
+
+.ticker-window {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-track,
+.ticker-group {
+  display: flex;
+  align-items: center;
+}
+
+.ticker-track {
+  width: max-content;
+  animation: tickerRight 22s linear infinite;
+  will-change: transform;
+}
+
+.ticker-group {
+  flex-shrink: 0;
+}
+
+.ticker-group span {
+  white-space: nowrap;
+  color: #f4fff8;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.35px;
+}
+
+.ticker-group span::after {
+  content: "\2022";
+  display: inline-block;
+  margin: 0 34px;
+  color: #35ff9b;
+  text-shadow: 0 0 8px rgba(53, 255, 155, 0.85);
+}
+
+@keyframes tickerRight {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
 
 /* =================================
    POPUP AREA
@@ -866,6 +952,20 @@ body.shake {
 
   #heartCursor {
     display: none;
+  }
+
+  .unlock-ticker {
+    height: 43px;
+  }
+
+  .ticker-label {
+    padding: 0 11px;
+    font-size: 10px;
+    letter-spacing: 0.8px;
+  }
+
+  .ticker-group span {
+    font-size: 13px;
   }
 }
 

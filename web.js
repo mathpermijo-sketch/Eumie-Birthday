@@ -51,6 +51,9 @@ const heartCursor =
 const blackFade =
   document.getElementById("blackFade");
 
+const unlockTicker =
+  document.getElementById("unlockTicker");
+
 let popupClosing = false;
 
 // Works for static controls and buttons created inside each popup.
@@ -556,6 +559,8 @@ function updateProgress() {
     completed + "/4";
 
   if (completed === 4) {
+
+    unlockTicker.classList.add("finished");
 
     lockedFinalBtn.style.display = "none";
 
