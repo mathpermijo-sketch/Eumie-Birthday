@@ -12,6 +12,13 @@ body {
   color: white;
 }
 
+/* The heart is the only visible cursor on this page. */
+html,
+body,
+body * {
+  cursor: none !important;
+}
+
 
 /* =================================
    MAIN PAGE
