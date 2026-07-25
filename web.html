@@ -17,13 +17,27 @@
 
     <div id="heartCursor">💚</div>
 
+
+
     <div class="page-content">
 
       <div class="top-buttons">
 
 
-        <button class="stage-btn" id="letterBtn">
-          Letter
+        <button class="stage-btn current-step" id="letterBtn">
+          Letter I
+        </button>
+
+        <button class="stage-btn locked" id="letter2Btn" type="button">
+          Letter II &#128274;
+        </button>
+
+        <button class="stage-btn locked" id="letter3Btn" type="button">
+          Letter III &#128274;
+        </button>
+
+        <button class="stage-btn locked" id="letter4Btn" type="button">
+          Letter IV &#128274;
         </button>
 
         <button class="stage-btn locked" id="wishBtn">
@@ -38,29 +52,21 @@
           Last Question 🔒
         </button>
 
+        <div class="final-box">
+          <button class="final-btn" id="lockedFinalBtn" type="button" disabled aria-label="Secret button locked">
+            Secret 🔒
+          </button>
+          <button id="finalBtn">Continue</button>
+          <div class="progress" id="progressText">0/7</div>
+        </div>
+
       </div>
 
       <div class="center-area">
 
         <h1 class="birthday-title">
-          Happy Birthday
+          𝓗𝒶𝓅𝓅𝓎 𝐵𝒾𝓇𝓉𝒽𝒹𝒶𝓎 🌸
         </h1>
-
-        <div class="final-box">
-
-          <button class="final-btn" id="lockedFinalBtn">
-            Locked 🔒
-          </button>
-
-          <button id="finalBtn">
-            Continue
-          </button>
-
-          <div class="progress" id="progressText">
-            0/4
-          </div>
-
-        </div>
 
       </div>
 
@@ -68,26 +74,6 @@
 
   </section>
 
-
-  <!-- NEWS-STYLE UNLOCK REMINDER -->
-
-  <div class="unlock-ticker" id="unlockTicker" role="status" aria-label="Unlock reminder">
-    <div class="ticker-label">REMINDER</div>
-    <div class="ticker-window">
-      <div class="ticker-track">
-        <div class="ticker-group">
-          <span>You need to finish to unlock the secret button!!!!!</span>
-          <span>You need to finish to unlock the secret button!!!!!</span>
-          <span>You need to finish to unlock the secret button!!!!!</span>
-        </div>
-        <div class="ticker-group" aria-hidden="true">
-          <span>You need to finish to unlock the secret button!!!!!</span>
-          <span>You need to finish to unlock the secret button!!!!!</span>
-          <span>You need to finish to unlock the secret button!!!!!</span>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- POPUP -->
 

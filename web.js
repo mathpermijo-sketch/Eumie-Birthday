@@ -1,6 +1,7 @@
 let completed = 0;
 
 let letterFinished = false;
+const extraLettersFinished = [false, false, false];
 let wishFinished = false;
 let questionFinished = false;
 let lastQuestionFinished = false;
@@ -23,6 +24,11 @@ const questionBtn =
 
 const lastQuestionBtn =
   document.getElementById("lastQuestionBtn");
+
+const letter2Btn = document.getElementById("letter2Btn");
+const letter3Btn = document.getElementById("letter3Btn");
+const letter4Btn = document.getElementById("letter4Btn");
+const extraLetterButtons = [letter2Btn, letter3Btn, letter4Btn];
 
 const finalBtn =
   document.getElementById("finalBtn");
@@ -50,9 +56,6 @@ const heartCursor =
 
 const blackFade =
   document.getElementById("blackFade");
-
-const unlockTicker =
-  document.getElementById("unlockTicker");
 
 let popupClosing = false;
 
@@ -123,6 +126,13 @@ lastQuestionBtn.addEventListener("click", () => {
 
   openLastQuestion();
 
+});
+
+extraLetterButtons.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    if (button.classList.contains("locked") || extraLettersFinished[index]) return;
+    openExtraLetter(index);
+  });
 });
 
 
@@ -238,6 +248,27 @@ function openLetter() {
 
 }
 
+
+const extraLetterContent = [
+  { title: "From Sittie", message: "HAPPY BIRTHDAY MIEMIEE, how are you? hope your doing good. i wish you nothing but the best, especially today because its your day. i wish you nothing but happiness and success for your future, i often see you hang out with our friends lalo na classmate mo lang sila which is good, hope you stay like that. I just also wanna say that thank you for the memories we've shared, and i know life has taken us on different paths, but I couldn't let today pass without wishing you a happy birthday. No matter what happened between us, I'll always be grateful for the memories we shared and the lessons we learned together. You became a part of an important chapter of my life, and that's something I'll always appreciate. i hope life continues to treat you well and i hope your new life out there brings you peace and happiness. Wishing you the best and a good things ahead. Iloveyouuuu umieeeee💋🫶" },
+  { title: "From elhaiza.salazar", message: "Hello Umiii this is your Izarett hehehe,  anyway happy birthday po Devilina 😆😆. As for this message for my Gorgeous Umii I just want to say na I'm very glad that I've meet you , and actually I can't believe na magiging friend kita 😆😆, but now we are already building a lot of memorable memories such as syempre nung Grade 10 tayo nohh lalo na yung kupyahan natin pag sa math time 😆. I also want to say thank you for everything you have done for me and I truly appreciate it po , lalo na po yung mag s-stay mo sa tabi ko and laging pag papaalala sakin ng bagay bagay lalo na yung about sa katangahan ko sa lovelife 😆😆. I wish that you're dream and wishes will come true as the time passed 😊,  please remember that We are always here for you and I understand kung bakit sometimes is hindi ka sanay na mag open up samin pero kahit ganun ay I'll just wait you up till you already comfortable enough para mag open up po sakin . Again happy birthday poo Umiii duss 😊😊" },
+  { title: "From jenny", message: "Hi yumi , i wanna to say happy happy birthday to u , una sa lahat salamat palagi dahil nanjn ka para sakin kapag may problema ako at kapag kailan ko ng makakaramay sa mga stress ko sa buhay nanjn ka para mag advice at pag sabihan ako salamat talaga sa lahat at ang wish ko syu sana marami pang blessings  at more lucky day for  u and of course good health always and keep safe my lovable bsf mwuah 💋💋 happy birthday to u 🥳🥳." }
+];
+
+function openExtraLetter(index) {
+  const letter = extraLetterContent[index];
+  popupArea.classList.remove("closing");
+  popupArea.classList.add("show");
+  mailBox.style.display = "none";
+  paperBox.innerHTML = `
+    <div class="letter-rose" aria-hidden="true">&#127801;</div>
+    <h2>${letter.title}</h2>
+    <p>${letter.message}</p>
+    <button class="done-btn" id="doneExtraLetterBtn">Done</button>
+  `;
+  paperBox.classList.add("show");
+  document.getElementById("doneExtraLetterBtn").addEventListener("click", () => finishExtraLetter(index));
+}
 
 // =================================
 // OPEN WISH
@@ -431,13 +462,14 @@ function finishLetter() {
 
   completed++;
 
-  letterBtn.textContent = "Letter ✓";
+  letterBtn.textContent = "Letter I ✓";
 
   letterBtn.classList.add("locked");
+  letterBtn.classList.remove("current-step");
 
-  wishBtn.classList.remove("locked");
-
-  wishBtn.textContent = "Wish";
+  letter2Btn.classList.remove("locked");
+  letter2Btn.classList.add("current-step");
+  letter2Btn.textContent = "Letter II";
 
   closePopup();
 
@@ -445,6 +477,31 @@ function finishLetter() {
 
 }
 
+
+function finishExtraLetter(index) {
+  if (extraLettersFinished[index]) return;
+  extraLettersFinished[index] = true;
+  completed++;
+
+  const button = extraLetterButtons[index];
+  button.textContent = `Letter ${["II", "III", "IV"][index]} ✓`;
+  button.classList.add("locked", "completed");
+  button.classList.remove("current-step");
+
+  const nextButton = extraLetterButtons[index + 1];
+  if (nextButton) {
+    nextButton.classList.remove("locked");
+    nextButton.classList.add("current-step");
+    nextButton.textContent = `Letter ${["III", "IV"][index]}`;
+  } else {
+    wishBtn.classList.remove("locked");
+    wishBtn.classList.add("current-step");
+    wishBtn.textContent = "Wish";
+  }
+
+  closePopup();
+  updateProgress();
+}
 
 // =================================
 // FINISH WISH
@@ -463,8 +520,10 @@ function finishWish() {
   wishBtn.textContent = "Wish ✓";
 
   wishBtn.classList.add("locked");
+  wishBtn.classList.remove("current-step");
 
   questionBtn.classList.remove("locked");
+  questionBtn.classList.add("current-step");
 
   questionBtn.textContent = "Question";
 
@@ -492,8 +551,10 @@ function finishQuestion() {
   questionBtn.textContent = "Question ✓";
 
   questionBtn.classList.add("locked");
+  questionBtn.classList.remove("current-step");
 
   lastQuestionBtn.classList.remove("locked");
+  lastQuestionBtn.classList.add("current-step");
 
   lastQuestionBtn.textContent =
     "Last Question";
@@ -523,6 +584,7 @@ function finishLastQuestion() {
     "Last Question ✓";
 
   lastQuestionBtn.classList.add("locked");
+  lastQuestionBtn.classList.remove("current-step");
 
   closePopup();
 
@@ -556,11 +618,9 @@ function closePopup() {
 function updateProgress() {
 
   progressText.textContent =
-    completed + "/4";
+    completed + "/7";
 
-  if (completed === 4) {
-
-    unlockTicker.classList.add("finished");
+  if (completed === 7) {
 
     lockedFinalBtn.style.display = "none";
 
@@ -572,7 +632,7 @@ function updateProgress() {
     );
 
     finalBtn.textContent =
-      "Continue 💚";
+      "Secret Unlocked 💚";
 
   }
 

@@ -258,7 +258,7 @@ button:active {
 
     border-radius: 50%;
 
-    background: white;
+    background: rgb(207, 4, 4);
 
     pointer-events: none;
 
