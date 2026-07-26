@@ -31,7 +31,7 @@ body * {
   overflow: hidden;
   padding: 25px 18px;
 
-  background-image: url("images/eum.png");
+  background-image: var(--page-background, url("images/eum.png"));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -95,6 +95,34 @@ body * {
 /* =================================
    TOP BUTTONS
 ================================= */
+
+/* EDITABLE PHOTO PAPER: change the --photo URLs in web.html. */
+.photo-paper-board { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+.photo-paper {
+  position: absolute;
+  width: clamp(92px, 11vw, 145px);
+  padding: 8px 8px 25px;
+  background: #fffdf6;
+  color: #31523e;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.48);
+  opacity: 0.82;
+}
+.photo-window { width: 100%; aspect-ratio: 1 / 0.82; background: #10251a var(--photo) center / cover no-repeat; }
+.photo-paper figcaption {
+  position: absolute; left: 0; right: 0; bottom: 6px;
+  text-align: center; font: 700 10px/1 "Segoe UI", sans-serif;
+  letter-spacing: 0.8px; text-transform: uppercase;
+}
+.photo-paper::before {
+  content: ""; position: absolute; left: 50%; top: -7px;
+  width: 44px; height: 14px; transform: translateX(-50%) rotate(-4deg);
+  background: rgba(220, 239, 205, 0.78); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.photo-paper-1 { left: 3%; top: 7%; transform: rotate(-11deg); }
+.photo-paper-2 { right: 3%; top: 7%; transform: rotate(10deg); }
+.photo-paper-3 { left: 50%; top: 23%; transform: translateX(-50%) rotate(-1deg); }
+.photo-paper-4 { left: 4%; bottom: 5%; transform: rotate(9deg); }
+.photo-paper-5 { right: 4%; bottom: 5%; transform: rotate(-9deg); }
 
 .top-buttons {
   position: absolute;
@@ -952,6 +980,10 @@ body.shake {
 }
 
 @media (max-width: 800px) {
+  .photo-paper { width: clamp(70px, 21vw, 100px); padding: 5px 5px 19px; opacity: 0.5; }
+  .photo-paper figcaption { bottom: 4px; font-size: 7px; }
+  .photo-paper-3 { top: 43%; opacity: 0.3; }
+
   .top-buttons {
     position: relative;
     inset: auto;
