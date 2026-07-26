@@ -12,7 +12,7 @@ body {
     min-height: 100vh;
     overflow: hidden;
 
-    font-family: "Poppins", "Segoe UI", sans-serif;
+    font-family: "Dancing Script", cursive;
 
     background:
         linear-gradient(
@@ -111,11 +111,11 @@ body {
     position: relative;
     z-index: 2;
 
-    font-size: 48px;
+    font-size: 110px;
 
     margin-bottom: 25px;
 
-    color: white;
+    color: #76CD26;
 
     text-align: center;
 
@@ -124,6 +124,12 @@ body {
         0 0 25px rgba(0, 255, 153, 0.7);
 
     animation: bounceText 1.5s infinite ease-in-out;
+
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    -webkit-text-fill-color: #76CD26;
+
+    ;
 }
 
 @keyframes bounceText {

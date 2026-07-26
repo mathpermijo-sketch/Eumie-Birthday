@@ -23,7 +23,7 @@ body {
     height: 100vh;
     overflow: hidden;
 
-    font-family: "Segoe UI", sans-serif;
+    font-family: "Poppins", sans-serif;
 
     cursor: none !important;
 }
@@ -110,7 +110,7 @@ a {
 
     text-align: center;
 
-    color: white;
+    color: #76CD26;
 
     opacity: 0;
 
@@ -119,22 +119,41 @@ a {
 }
 
 .content h1 {
+    font-family: "Dancing Script", cursive;
+
     font-size: 70px;
+    font-weight: 700;
 
     margin-bottom: 15px;
 
     text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+
+
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    -webkit-text-fill-color: #76CD26;
 }
 
 .content h2 {
-    font-size: 42px;
+    font-family: "Dancing Script", cursive;
+
+    font-size: 100px;
+    font-weight: 600;
 
     margin-bottom: 20px;
 
     text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    -webkit-text-fill-color: #76CD26;
+
+
 }
 
 .content p {
+    font-family: "Poppins", sans-serif;
+
     font-size: 24px;
 
     margin-bottom: 40px;
@@ -143,7 +162,6 @@ a {
 
     text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 }
-
 
 /* =================================
    BUTTON
@@ -159,7 +177,9 @@ button {
 
     color: white;
 
+    font-family: "Poppins", sans-serif;
     font-size: 20px;
+    font-weight: 600;
 
     cursor: none !important;
 
