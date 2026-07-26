@@ -697,3 +697,34 @@ function createFlower() {
 
 
 setInterval(createFlower, 280);
+// Click a Polaroid to view it large over a blurred garden backdrop.
+document.querySelectorAll(".photo-paper").forEach((paper) => {
+  paper.addEventListener("click", () => openPhotoLightbox(paper));
+});
+
+function openPhotoLightbox(paper) {
+  closePhotoLightbox();
+  const photo = paper.style.getPropertyValue("--photo").trim();
+  const caption = paper.querySelector("figcaption")?.textContent || "Photo";
+  const lightbox = document.createElement("div");
+  lightbox.className = "photo-lightbox";
+  lightbox.innerHTML = `
+    <button class="photo-lightbox-close" type="button" aria-label="Close photo">×</button>
+    <figure class="photo-paper-expanded">
+      <div class="photo-window" style="background-image: ${photo}"></div>
+      <figcaption>${caption}</figcaption>
+    </figure>
+  `;
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox || event.target.closest(".photo-lightbox-close")) closePhotoLightbox();
+  });
+  document.body.appendChild(lightbox);
+}
+
+function closePhotoLightbox() {
+  document.querySelector(".photo-lightbox")?.remove();
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closePhotoLightbox();
+});

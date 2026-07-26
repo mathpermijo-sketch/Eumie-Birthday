@@ -31,7 +31,7 @@ body * {
   overflow: hidden;
   padding: 25px 18px;
 
-  background-image: var(--page-background, url("images/eum.png"));
+  background-image: var(--page-background, url("images/m2.png"));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -97,16 +97,21 @@ body * {
 ================================= */
 
 /* EDITABLE PHOTO PAPER: change the --photo URLs in web.html. */
-.photo-paper-board { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+.photo-paper-board { position: absolute; inset: 0; z-index: 3; overflow: hidden; pointer-events: none; }
 .photo-paper {
   position: absolute;
+  z-index: 1;
   width: clamp(92px, 11vw, 145px);
   padding: 8px 8px 25px;
   background: #fffdf6;
   color: #31523e;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.48);
   opacity: 0.82;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: translate 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
 }
+.photo-paper:hover { opacity: 1; translate: 0 -8px; filter: brightness(1.08) drop-shadow(0 12px 22px rgba(94, 255, 145, 0.45)); }
 .photo-window { width: 100%; aspect-ratio: 1 / 0.82; background: #10251a var(--photo) center / cover no-repeat; }
 .photo-paper figcaption {
   position: absolute; left: 0; right: 0; bottom: 6px;
@@ -123,6 +128,56 @@ body * {
 .photo-paper-3 { left: 50%; top: 23%; transform: translateX(-50%) rotate(-1deg); }
 .photo-paper-4 { left: 4%; bottom: 5%; transform: rotate(9deg); }
 .photo-paper-5 { right: 4%; bottom: 5%; transform: rotate(-9deg); }
+
+.page-content::before {
+  animation: wreathGlow 4s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes wreathGlow {
+  0%, 100% {
+    transform: scale(0.985) rotate(-0.5deg);
+    outline-color: rgba(125, 204, 82, 0.55);
+    box-shadow: inset 0 0 0 6px rgba(96, 164, 64, 0.55), inset 0 0 35px rgba(76, 190, 74, 0.26), 0 0 18px rgba(6, 43, 18, 0.9), 0 0 22px rgba(73, 177, 67, 0.28);
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.5)) brightness(0.96);
+  }
+  50% {
+    transform: scale(1.015) rotate(0.5deg);
+    outline-color: rgba(166, 245, 102, 0.95);
+    box-shadow: inset 0 0 0 8px rgba(132, 221, 85, 0.76), inset 0 0 60px rgba(86, 255, 105, 0.42), 0 0 25px rgba(6, 43, 18, 0.95), 0 0 55px rgba(94, 255, 122, 0.55);
+    filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.55)) brightness(1.2);
+  }
+}
+
+.photo-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 90000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(2, 16, 10, 0.58);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: lightboxIn 0.3s ease both;
+  cursor: pointer;
+}
+.photo-paper-expanded {
+  width: min(520px, 88vw);
+  padding: 18px 18px 58px;
+  background: #fffdf6;
+  color: #31523e;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7);
+  transform: rotate(-2deg);
+  cursor: default;
+}
+.photo-paper-expanded .photo-window {
+  aspect-ratio: 1 / 0.82;
+  background-size: contain;
+  background-color: #eef7e8;
+}
+.photo-paper-expanded figcaption { bottom: 18px; font-size: 14px; }
+.photo-lightbox-close { position: absolute; top: 18px; right: 24px; border: 0; background: rgba(255,255,255,.15); color: white; font-size: 30px; line-height: 1; padding: 8px 13px; border-radius: 50%; cursor: pointer; }
+@keyframes lightboxIn { from { opacity: 0; } to { opacity: 1; } }
 
 .top-buttons {
   position: absolute;
