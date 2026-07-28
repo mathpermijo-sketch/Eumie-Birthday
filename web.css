@@ -31,7 +31,7 @@ body * {
   overflow: hidden;
   padding: 25px 18px;
 
-  background-image: var(--page-background, url("images/m2.png"));
+  background-image: var(--page-background, url("images/eum.png"));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
