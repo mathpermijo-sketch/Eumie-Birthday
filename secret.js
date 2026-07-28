@@ -436,7 +436,7 @@ videoBtn.addEventListener("click", () => {
       controls
       playsinline
     >
-     <source src="videos/videos.mp4.mp4" type="video/mp4">
+     <source src="videos/vid2.mp4" type="video/mp4">
 
       Your browser does not support this video.
     </video>
